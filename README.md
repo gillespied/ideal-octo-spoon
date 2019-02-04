@@ -17,3 +17,14 @@ returns
 
 Inputs must be float, int or a castable string, e.g., `'111'`, not `a string`
 
+# Install
+
+To install clone the directory, change directory and run `setup.py`. Run tests with `pytest`.
+
+```bash
+git clone https://github.com/gillespied/number_to_word.git
+cd number_to_word
+python setup.py -q install
+pytest
+```
+
