@@ -33,3 +33,8 @@ def test_minus_float():
 
 def test_zero():
     assert number_to_word.number_to_word(0) == 'zero'
+
+
+def test_bigger_than_max():
+    with pytest.raises(AssertionError):
+        number_to_word.number_to_word(10**30)

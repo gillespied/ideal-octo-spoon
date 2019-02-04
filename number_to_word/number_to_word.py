@@ -2,11 +2,11 @@ from .load_dictionaries import number_dict, tens_dict
 
 
 def number_to_word(number):
-    """Returns a string containing the number spelled out in word.
+    """Returns a string containing the number spelled out in words.
     Arguments:
         number -- an int, float or parse-able string.
     Returns:
-        str -- number spelled out.
+        str -- the number spelled out.
     """
 
     # before proceeding further, check if the input is valid
@@ -32,18 +32,26 @@ def validate_input(number):
     Arguments:
         number {float or int} -- a validated number.
     """
+    assert isinstance(number, (float, int, str)), \
+        "Number must be an int, float or string which parses"
 
-    if type(number) is str:
+    if isinstance(number, str):
+
         try:
             number = float(number)
-        except:
-            raise ValueError()
-        finally:
-            if int(number) == float(number):
-                # no decimal places, convert string to integer
-                number = int(number)
-            else:
-                number = float(number)
+
+        except ValueError as err:
+            print("Could not convert string to a number", err)
+
+    if int(number) == float(number):
+        # no decimal places, convert string to integer
+        number = int(number)
+    else:
+        number = float(number)
+
+    max_number = max([int(x) for x in list(tens_dict.keys())])
+    assert number < 100*(10**max_number), \
+        "Number must be less than 999*10**{}".format(max_number)
 
     return number
 
@@ -111,7 +119,11 @@ def merge_before_point(groups_of_three, list_of_tens):
             merged_lists {list} -- the merged list
     """
 
+    assert type(groups_of_three) is list, "Groups of three must be a list"
+    assert type(list_of_tens) is list, "List of tens must be a list"
+
     merged_list = list()
+
     for index, item in enumerate(groups_of_three):
 
         # if the group is empty, ignore unless its the last
@@ -123,21 +135,24 @@ def merge_before_point(groups_of_three, list_of_tens):
     return merged_list
 
 
-def parse_three(three):
+def parse_three(number):
     """Return numbers from 0-999 as words.
     Arguments:
-        three {int} -- an interger between 0 and 999.
+        number {int} -- an integer between 0 and 999.
         number_dict {dict} -- a dictionary containing
         english words for numbers.
     Returns:
         words {str} -- a string containing the words as numbers.
     """
+
+    assert 0 <= number < 1000, "Number must be in range [0-1000]"
     # separate the group into hundreds, tens, units
-    hundreds = three // 100
-    tens = (three - hundreds * 100) // 10
-    ones = (three - hundreds * 100 - tens * 10)
+    hundreds = number // 100
+    tens = (number - hundreds * 100) // 10
+    ones = (number - hundreds * 100 - tens * 10)
 
     words = list()
+
     # if any hundreds exist, look up the number in the dictionary
     if hundreds > 0:
         words.append(number_dict[str(hundreds)])

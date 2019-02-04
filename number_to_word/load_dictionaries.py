@@ -43,5 +43,7 @@ tens_dict = {
     '6': 'million',
     '9': 'billion',
     '12': 'trillion',
+    '15': 'quadrillion',
+    '18': 'quintillion',
 }
 
