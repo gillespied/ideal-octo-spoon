@@ -20,5 +20,3 @@ Inputs must be float, int or a castable string, e.g., `'111'`, not `a string`
 ## Testing
 
 Testing requires pycharm
-
-# TravisCI
