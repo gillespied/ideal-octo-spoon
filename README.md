@@ -1,5 +1,5 @@
 # number_to_word
-[![Build Status](https://travis-ci.org/gillespied/ideal-octo-spoon.svg?branch=master)](https://travis-ci.org/gillespied/ideal-octo-spoon)
+[![Build Status](https://travis-ci.org/gillespied/number_to_word.svg?branch=master)](https://travis-ci.org/gillespied/number_to_word)
 
 A package for converting numbers to english words, e.g., 
 
